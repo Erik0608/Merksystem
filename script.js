@@ -36,10 +36,13 @@ function load_people() {
             id = key;
             const person_div = document.createElement("div");
             person_div.className = "person-entry";
-            person_div.innerHTML = `<h3>${person.name}</h3>
+            person_div.id = `person`;
+            person_div.innerHTML = `<div class="edit-btn"></div>
+                                    <h3>${person.name}</h3>
                                     <p><strong>Job:</strong> ${person.job}</p>
                                     <p><strong>Stellenbezeichnung:</strong> ${person.profession}</p>
                                     <p><strong>Informationen:</strong> ${person.information}</p>
+                                    
                                     `;
             person_div.setAttribute("data-id", id);
             person_list.appendChild(person_div);
@@ -48,13 +51,8 @@ function load_people() {
             const settings_btn = document.createElement("button");
             settings_btn.className = "settings-btn";
             settings_btn.innerText = "Löschen";
-
-            const edit_btn = document.createElement("button");
-            edit_btn.className = "edit-btn";
-            edit_btn.innerText = "Bearbeiten";
-
             person_div.appendChild(settings_btn);
-            person_div.appendChild(edit_btn);
+
         }
     }   
     //console.log("---- End of List ----------------------------");
@@ -77,26 +75,15 @@ function update_person(id, name, job, profession, information) {
 }
 
 function setInformation() {
-    if (person.name != "Unbekannt") {
-        document.getElementById("edit-name-input").value = person.name;
-    } else {
-        document.getElementById("edit-name-input").value = "";
-    }
-    if (person.job != "Unbekannt") {
-        document.getElementById("edit-job-input").value = person.job;
-    } else {
-        document.getElementById("edit-job-input").value = "";
-    }
-    if (person.profession != "Unbekannt") {
-        document.getElementById("edit-profession-input").value = person.profession;
-    } else {
-        document.getElementById("edit-profession-input").value = "";
-    }
-    if (person.information != "Keine Informationen vorhanden.") {
-        console.log("information is nicht kiv also ändern");
-        document.getElementById("edit-info-input").value = person.information;
-    } else {
-        document.getElementById("edit-info-input").value = "";
+    const fields = {
+        "edit-name-input": { value: person.name, default: "Unbekannt" },
+        "edit-job-input": { value: person.job, default: "Unbekannt" },
+        "edit-profession-input": { value: person.profession, default: "Unbekannt" },
+        "edit-info-input": { value: person.information, default: "Keine Informationen vorhanden." }
+    };
+
+    for (const [id, { value, default: defaultValue }] of Object.entries(fields)) {
+        document.getElementById(id).value = value !== defaultValue ? value : "";
     }
 
     last = person.id;
@@ -182,21 +169,27 @@ document.getElementById("person-list").addEventListener("click", function(event)
 // function to toggle visibility of a form
 
 function setVisibility(id, value) {
-    if (value === undefined) {
-        current = document.getElementById(id).style.display
-        if (current == "block") {
-            value = false;
-        } else {1
-            value = true;
+    // check if either container or edit-container is visible, if one of them gets visible close the other one
+    if (id == "add-container") {
+        document.getElementById("edit-container").style.display = "none";
+    } else if (id == "edit-container") {
+        document.getElementById("add-container").style.display = "none";
+    }
+        if (value === undefined) {
+            current = document.getElementById(id).style.display
+            if (current == "block") {
+                value = false;
+            } else {1
+                value = true;
+            }
         }
-    }
-    //console.log("Setting visibility of", id, "to", value);
-    const form = document.getElementById(id);
-    if (value == true) {
-        form.style.display = "block";
-    } else {
-        form.style.display = "none";
-    }
+        //console.log("Setting visibility of", id, "to", value);
+        const form = document.getElementById(id);
+        if (value == true) {
+            form.style.display = "block";
+        } else {
+            form.style.display = "none";
+        }
 }
 
 // initial load

@@ -2,12 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-}
-
-#add-person-img {
-    padding-top: 4px;
-    padding-right: 14px;
-    height: 5vh;
+  font-family: "Inter", sans-serif;
 }
 
 #container {
@@ -20,12 +15,19 @@ html, body {
 }
 #add-person-btn {
     position: fixed;
-    height: 7vh;
-    width: 7vh;
+    height: 9vh;
+    width: 9vh;
     right: 10px;
-    top: 93%;
+    top: 88%;
     z-index: 1000;
 }
+
+#add-person-img {
+    padding-top: 4px;
+    padding-right: 14px;
+    height: 7.5vh;
+}
+
 .person-entry {
     background: lightgray;
     padding: 10px;
@@ -43,10 +45,15 @@ html, body {
     gap: 10px; /* Abstand zwischen den Boxen */
 }
 
-@media (min-width: 700px) {
-    #person-list {
-        grid-template-columns: repeat(3, 1fr); /* change to 3 columns */
-    }
+.settings-btn {
+    position: relative;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 35px;
+    left: 38%;
+    top: -82%;
 }
 
 .edit {
@@ -62,6 +69,12 @@ html, body {
     padding-bottom: 3px;
 }
 
+.edit-btn {
+    position: absolute;
+    width: 43%;
+    height: 225px;
+}
+
 .edit-row {
     display: flex;
     justify-content: center; 
@@ -72,7 +85,7 @@ html, body {
 .eform {
     flex: 1;                 
     min-width: 120px;
-    max-width: 40vw;    
+    max-width: 40vw;
     height: 3vh;
     border-radius: 2px; 
     border: none;
@@ -89,4 +102,25 @@ html, body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+#submit-btn{
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+#edit-btn {
+    background-color: #008CBA; /* Blue */
+    color: white;
+}
+
+@media (min-width: 700px) {
+    #person-list {
+        grid-template-columns: repeat(3, 1fr); /* change to 3 columns */
+    }
+    .edit-btn {
+    position: absolute;
+    width: 31%;
+    height: 200px;
+}
 }
