@@ -1,12 +1,89 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#add-person-img {
+    padding-top: 3px;
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: rgb(36, 33, 33);
+    padding-top: 10px;
+    margin: 0;
+}
+#add-person-btn {
+    position: absolute;
+    height: 5vh;
+    width: 5vh;
+    right: 10px;
+    top: 93%;
+}
 .person-entry {
     background: lightgray;
-    padding: 20px;
+    padding: 10px;
     border-radius: 4px;
     text-align: center;
 }
 
 #person-list {
+    padding-top: 1px;
+    position: relative;
+    width: 96vw;
+    left: 2vw;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 Spalten */
+    grid-template-columns: repeat(2, 1fr); /* 3 Spalten */
     gap: 10px; /* Abstand zwischen den Boxen */
+}
+
+@media (min-width: 700px) {
+    #person-list {
+        grid-template-columns: repeat(3, 1fr); /* change to 3 columns */
+    }
+}
+
+.edit {
+    background-color: lightgray; /* Grüner Hintergrund */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; 
+    padding-top: 10px;
+    width: 96vw;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    padding-bottom: 3px;
+}
+
+.edit-row {
+    display: flex;
+    justify-content: center; 
+    gap: 10px;            
+    margin-bottom: 10px;     
+}
+
+.eform {
+    flex: 1;                 
+    min-width: 120px;
+    max-width: 40vw;    
+    height: 3vh;
+    border-radius: 2px; 
+    border: none;
+    padding: 4px;
+    font-size: 14px;
+    text-align: left;
+}
+
+#submit-btn, #edit-btn {
+    display: block;          /* place on a new line */
+    margin: 0 auto 10px auto; /* center button and add bottom margin */
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }

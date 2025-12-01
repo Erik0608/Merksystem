@@ -1,4 +1,5 @@
 var person = null;
+var last = null;
 
 // main backend functions
 
@@ -19,7 +20,7 @@ function create_person(name, job, profession, information) {
     localStorage.setItem("id_counter", id);
     clearForm();
     load_people();
-    toggleVisibility("add-container");
+    setVisibility("add-container", false);
 }
 
 function load_people() {
@@ -60,8 +61,8 @@ function load_people() {
 }
 
 function update_person(id, name, job, profession, information) {
-    console.log(`Updating person with ID ${id}`);
-    console.log(`New data - Name: ${name}, Job: ${job}, Profession: ${profession}, Information: ${information}`);
+    console.log("Updating person with ID:", id);
+    console.log("New values - Name:", name, "Job:", job, "Profession:", profession, "Information:", information);
     const person = {
         id: id,
         name: name,
@@ -73,6 +74,32 @@ function update_person(id, name, job, profession, information) {
 
     clearEditForm();
     load_people();
+}
+
+function setInformation() {
+    if (person.name != "Unbekannt") {
+        document.getElementById("edit-name-input").value = person.name;
+    } else {
+        document.getElementById("edit-name-input").value = "";
+    }
+    if (person.job != "Unbekannt") {
+        document.getElementById("edit-job-input").value = person.job;
+    } else {
+        document.getElementById("edit-job-input").value = "";
+    }
+    if (person.profession != "Unbekannt") {
+        document.getElementById("edit-profession-input").value = person.profession;
+    } else {
+        document.getElementById("edit-profession-input").value = "";
+    }
+    if (person.information != "Keine Informationen vorhanden.") {
+        console.log("information is nicht kiv also ändern");
+        document.getElementById("edit-info-input").value = person.information;
+    } else {
+        document.getElementById("edit-info-input").value = "";
+    }
+
+    last = person.id;
 }
 
 function clearForm() {
@@ -91,7 +118,6 @@ function clearEditForm() {
 
 function delete_person(id) {
     localStorage.removeItem(id);
-    console.log(`Person with ID ${id} deleted.`);
     load_people();
 }
 
@@ -103,7 +129,7 @@ function createID() {
 
 // toggle visibility of add person form
 document.getElementById("add-person-btn").addEventListener("click", function() {
-    toggleVisibility("add-container");
+    setVisibility("add-container");
 })
 
 document.getElementById("submit-btn").addEventListener("click", function() {
@@ -116,8 +142,7 @@ document.getElementById("submit-btn").addEventListener("click", function() {
 
 document.getElementById("edit-btn").addEventListener("click", function() {
 
-    console.log(person);
-    console.log(`Editing person with ID: ${person.id}`);
+    //clearEditForm();
 
     // use user new input to update person or use existing data if input is empty
     const name = document.getElementById("edit-name-input").value || person.name;
@@ -126,7 +151,7 @@ document.getElementById("edit-btn").addEventListener("click", function() {
     const information = document.getElementById("edit-info-input").value || person.information;
 
     update_person(person.id, name, job, profession, information);
-    toggleVisibility("edit-container");
+    setVisibility("edit-container");
 });
 
 document.getElementById("person-list").addEventListener("click", function(event) {
@@ -138,21 +163,39 @@ document.getElementById("person-list").addEventListener("click", function(event)
 
 document.getElementById("person-list").addEventListener("click", function(event) {
     if (event.target.classList.contains("edit-btn")) {
-        toggleVisibility("edit-container");
+        current = event.target.parentElement.getAttribute("data-id");
+        // if the edit is clicked but form is closed, open it
+        if (document.getElementById("edit-container").style.display == "none") {
+            setVisibility("edit-container", true);
+        } else if (last == current) {
+            setVisibility("edit-container", false);
+            return;
+        }
+        console.log(last, current);
         id = event.target.parentElement.getAttribute("data-id");
         person = JSON.parse(localStorage.getItem(id));
+        console.log("Editing person:", person.name);
+        setInformation();
     }
 });
 
 // function to toggle visibility of a form
 
-function toggleVisibility(id) {
+function setVisibility(id, value) {
+    if (value === undefined) {
+        current = document.getElementById(id).style.display
+        if (current == "block") {
+            value = false;
+        } else {1
+            value = true;
+        }
+    }
+    //console.log("Setting visibility of", id, "to", value);
     const form = document.getElementById(id);
-    visible = form.style.display === "block";
-    if (visible) {
-        form.style.display = "none";
-    } else {
+    if (value == true) {
         form.style.display = "block";
+    } else {
+        form.style.display = "none";
     }
 }
 

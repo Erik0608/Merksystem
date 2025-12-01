@@ -7,23 +7,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="add-person-btn">Person hinzufügen</button>
-    <div id="add-container" style="display:none;">
-        <input type="text" id="name-input" placeholder="Name">
-        <input type="text" id="job-input" placeholder="Job">
-        <input type="text" id="profession-input" placeholder="Stellenbezeichnung">
-        <input type="text" id="info-input" placeholder="Informationen">
-        <button id="submit-btn">Hinzufügen</button>
+    <div id="container">
+        <button id="add-person-btn"><img id="add-person-img" height="30vw" src="img/plus.svg"></button>
+        <div class="edit" id="add-container" style="display:none;">
+            <div class="edit-row">
+                <input class="eform" type="text" id="name-input" placeholder="Name">
+                <input class="eform" type="text" id="job-input" placeholder="Job">
+            </div>
+            <div class="edit-row">
+            <input class="eform" type="text" id="profession-input" placeholder="Stellenbezeichnung">
+            <input class="eform" type="text" id="info-input" placeholder="Informationen">
+            </div>
+            <button id="submit-btn">Hinzufügen</button>
+        </div>
+    
+        <div class="edit" id="edit-container" style="display:none;">
+            <div class="edit-row">
+            <input class="eform" type="text" id="edit-name-input" placeholder="Name">
+            <input class="eform" type="text" id="edit-job-input" placeholder="Job">
+            </div>
+            <div class="edit-row">
+            <input class="eform" type="text" id="edit-profession-input" placeholder="Stellenbezeichnung">
+            <input class="eform" type="text" id="edit-info-input" placeholder="Informationen">
+            </div>
+            <button id="edit-btn">Ändern</button>
+        </div>
+        <div id="person-list"></div>
     </div>
- 
-    <div id="edit-container" style="display:none;">
-        <input type="text" id="edit-name-input" placeholder="Name">
-        <input type="text" id="edit-job-input" placeholder="Job">
-        <input type="text" id="edit-profession-input" placeholder="Stellenbezeichnung">
-        <input type="text" id="edit-info-input" placeholder="Informationen">
-        <button id="edit-btn">Ändern</button>
-    </div>
-    <div id="person-list"></div>
     <script src="script.js"></script>
 </body>
 </html>
