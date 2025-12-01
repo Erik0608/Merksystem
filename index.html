@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="add-person-btn">Person hinzufügen</button>
+    <div id="add-container" style="display:none;">
+        <input type="text" id="name-input" placeholder="Name">
+        <input type="text" id="job-input" placeholder="Job">
+        <input type="text" id="profession-input" placeholder="Stellenbezeichnung">
+        <input type="text" id="info-input" placeholder="Informationen">
+        <button id="submit-btn">Hinzufügen</button>
+    </div>
+ 
+    <div id="edit-container" style="display:none;">
+        <input type="text" id="edit-name-input" placeholder="Name">
+        <input type="text" id="edit-job-input" placeholder="Job">
+        <input type="text" id="edit-profession-input" placeholder="Stellenbezeichnung">
+        <input type="text" id="edit-info-input" placeholder="Informationen">
+        <button id="edit-btn">Ändern</button>
+    </div>
+    <div id="person-list"></div>
+    <script src="script.js"></script>
+</body>
+</html>

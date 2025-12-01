@@ -1,0 +1,12 @@
+.person-entry {
+    background: lightgray;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#person-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Spalten */
+    gap: 10px; /* Abstand zwischen den Boxen */
+}
