@@ -26,12 +26,11 @@ function create_person(name, job, profession, information) {
 function load_people() {
     const person_list = document.getElementById("person-list");
     person_list.innerHTML = ""; // clear existing list
+    // create a div for each person
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        // log all the gathered information
         const person = JSON.parse(localStorage.getItem(key));
         //console.log(`ID: ${key}, Name: ${person.name}, Job: ${person.job}, Profession: ${person.profession}, Information: ${person.information}`);
-        // create a div for each person
         if (key !== "id_counter") {
             id = key;
             const person_div = document.createElement("div");
@@ -55,12 +54,10 @@ function load_people() {
 
         }
     }   
-    //console.log("---- End of List ----------------------------");
 }
 
 function update_person(id, name, job, profession, information) {
-    console.log("Updating person with ID:", id);
-    console.log("New values - Name:", name, "Job:", job, "Profession:", profession, "Information:", information);
+    // console.log("New values - Name:", name, "Job:", job, "Profession:", profession, "Information:", information);
     const person = {
         id: id,
         name: name,
