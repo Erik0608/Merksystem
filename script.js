@@ -105,11 +105,11 @@ function delete_person(id) {
     load_people();
 }
 
-// frontend functions
-
 function createID() {
     return localStorage.getItem("id_counter") ? parseInt(localStorage.getItem("id_counter")) + 1 : 0;
 }
+
+// frontend functions
 
 // toggle visibility of add person form
 document.getElementById("add-person-btn").addEventListener("click", function() {
@@ -155,10 +155,10 @@ document.getElementById("person-list").addEventListener("click", function(event)
             setVisibility("edit-container", false);
             return;
         }
-        console.log(last, current);
+        // console.log(last, current);
         id = event.target.parentElement.getAttribute("data-id");
         person = JSON.parse(localStorage.getItem(id));
-        console.log("Editing person:", person.name);
+        // console.log("Editing person:", person.name);
         setInformation();
     }
 });
