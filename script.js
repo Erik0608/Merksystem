@@ -1,6 +1,11 @@
 var person = null;
 var last = null;
 
+// Sicherheit: Eingaben werden als Text angezeigt, nie als HTML ausgeführt
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
 // main backend functions
 
 function create_person(name, job, profession, information) {
@@ -37,10 +42,10 @@ function load_people() {
             person_div.className = "person-entry";
             person_div.id = `person`;
             person_div.innerHTML = `<div class="edit-btn"></div>
-                                    <h3>${person.name}</h3>
-                                    <p><strong>Job:</strong> ${person.job}</p>
-                                    <p><strong>Stellenbezeichnung:</strong> ${person.profession}</p>
-                                    <p><strong>Informationen:</strong> ${person.information}</p>
+                                    <h3>${escapeHTML(person.name)}</h3>
+                                    <p><strong>Job:</strong> ${escapeHTML(person.job)}</p>
+                                    <p><strong>Stellenbezeichnung:</strong> ${escapeHTML(person.profession)}</p>
+                                    <p><strong>Informationen:</strong> ${escapeHTML(person.information)}</p>
                                     
                                     `;
             person_div.setAttribute("data-id", id);
